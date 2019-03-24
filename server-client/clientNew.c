@@ -45,12 +45,27 @@ int main(int argc, char const *argv[])
         send(sock, name, strlen(name), 0);
     printf("[Accept]: Successful!\n");
     while(1) {
+/*        while(1) {
+            memset(buffer, 0, 1024*sizeof(char));
+            valread = read(sock, buffer, 1024);
+            if (valread <= 0)
+                break;
+            buffer[valread] = '\0';
+            printf("[Read]: %s", buffer);
+        }*/
         memset(in, 0, 1024*sizeof(char));
         fgets(in, 1024 * sizeof(char), stdin);
         send(sock, in, strlen(in), 0);
         printf("-Sent√-");
-        valread = read(sock, buffer, 1024);
-        printf("[Read]: %s\n", buffer);
+ //       while(1) {
+ //           printf("ready to read");
+ //           memset(buffer, 0, 1024*sizeof(char));
+            valread = read(sock, buffer, 1024);
+ //           if (valread <= 0)
+ //              break;
+            buffer[valread] = '\0';
+            printf("[Read]: %s", buffer);
+ //       }*/
     }
     return 0;
 }
